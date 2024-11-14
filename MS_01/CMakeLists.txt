@@ -1,3 +1,31 @@
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.0.0)
+set(toolchainVersion 13_2_Rel1)
+set(picotoolVersion 2.0.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
+if(WIN32)
+    set(USERHOME $ENV{USERPROFILE})
+else()
+    set(USERHOME $ENV{HOME})
+endif()
+set(sdkVersion 2.0.0)
+set(toolchainVersion 13_2_Rel1)
+set(picotoolVersion 2.0.0)
+set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
+if (EXISTS ${picoVscode})
+    include(${picoVscode})
+endif()
+# ====================================================================================
 # Generated Cmake Pico project file
 
 cmake_minimum_required(VERSION 3.13)
@@ -9,7 +37,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 # Initialise pico_sdk from installed location
 # (note this can come from environment, CMake cache etc)
 
-# == DO NEVER EDIT THE NEXT LINES for Raspberry Pi Pico VS Code Extension to work ==
+# == DO NOT EDIT THE FOLLOWING LINES for the Raspberry Pi Pico VS Code Extension to work ==
 if(WIN32)
     set(USERHOME $ENV{USERPROFILE})
 else()
@@ -28,31 +56,29 @@ set(PICO_BOARD arduino_nano_rp2040_connect CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(MS_01 C CXX ASM)
+project(MS_02 C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
 # Add executable. Default name is the project name, version 0.1
+add_executable(MS_02 MS_02.c motor_driver.c)  # Include your motor control source here
 
-add_executable(MS_01 MS_01.c )
-
-pico_set_program_name(MS_01 "MS_01")
-pico_set_program_version(MS_01 "0.1")
+pico_set_program_name(MS_02 "MS_02")
+pico_set_program_version(MS_02 "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(MS_01 0)
-pico_enable_stdio_usb(MS_01 1)
+pico_enable_stdio_uart(MS_02 0)
+pico_enable_stdio_usb(MS_02 1)
 
-# Add the standard library to the build
-target_link_libraries(MS_01
-        pico_stdlib)
+# Add the standard library and hardware_pwm library to the build
+target_link_libraries(MS_02
+        pico_stdlib
+        hardware_pwm)
 
 # Add the standard include files to the build
-target_include_directories(MS_01 PRIVATE
+target_include_directories(MS_02 PRIVATE
   ${CMAKE_CURRENT_LIST_DIR}
-  ${CMAKE_CURRENT_LIST_DIR}/.. # for our common lwipopts or any other standard includes, if required
 )
 
-pico_add_extra_outputs(MS_01)
-
+pico_add_extra_outputs(MS_02)
