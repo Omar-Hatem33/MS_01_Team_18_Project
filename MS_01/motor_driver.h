@@ -9,6 +9,18 @@
 #define MOTOR_A_IN2 15 // IN2 Pin for motor A
 #define MOTOR_A_PWM 16 // ENA Pin for PWM speed control of motor A
 
+#define MOTOR_B_IN1 17 // IN1 Pin for motor A
+#define MOTOR_B_IN2 18 // IN1 Pin for motor A
+#define MOTOR_B_PWM 19 // ENA Pin for PWM speed control of motor A
+
+// #define MOTOR_A_IN1 2 // IN1 Pin for motor A
+// #define MOTOR_A_IN2 3 // IN2 Pin for motor A
+// #define MOTOR_A_PWM 4 // ENA Pin for PWM speed control of motor A
+
+// #define MOTOR_B_IN1 6 // IN1 Pin for motor A
+// #define MOTOR_B_IN2 7 // IN1 Pin for motor A
+// #define MOTOR_B_PWM 8 // ENA Pin for PWM speed control of motor A
+
 // Function to initialize the motor and PWM
 void motor_pwm_init();
 
