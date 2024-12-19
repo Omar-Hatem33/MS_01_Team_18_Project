@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\desktop\UNI\Semester 7\Embedded Systems\Project\Github Repo\MS_01_Team_18_Project\build\CMakeFiles\1cb1b2bcdd76054b3638b32d192e8b12\bs2_default.bin.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\desktop\UNI\Semester 7\Embedded Systems\Project\Github Repo\MS_01_Team_18_Project\build\CMakeFiles\8bdbc3418ef898a8cf284ed4a5f822ee\bs2_default_bin.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\omar\.pico-sdk\sdk\2.0.0\src\rp2040\boot_stage2\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\desktop\UNI\Semester 7\Embedded Systems\Project\Github Repo\MS_01_Team_18_Project\build\pico-sdk\src\rp2040\boot_stage2\CMakeFiles\bs2_default_bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{A6FD03E3-8026-3964-B0F1-5D68DA543D43}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
