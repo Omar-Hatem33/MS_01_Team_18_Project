@@ -25,7 +25,7 @@
 void motor_pwm_init();
 
 // Function to set the motor direction
-void motor_set_direction(bool forward);
+void motor_set_direction(const char *direction);
 
 // Function to set the motor speed using PWM (0-255)
 void motor_set_speed(uint8_t speed);
@@ -41,5 +41,7 @@ void pwm_set_duty_cycle(uint pin, uint32_t duty_cycle);
 
 // Function to stop PWM on a pin
 void pwm_stop(uint pin);
+
+void motor_print_state();
 
 #endif // MOTOR_PWM_DRIVER_H

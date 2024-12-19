@@ -1,5 +1,7 @@
 #include "motor_driver.h"
 #include "hardware/clocks.h"
+#include <string.h>
+#include <stdio.h>
 
 // Function to initialize the motors and PWM
 void motor_pwm_init()
@@ -33,24 +35,45 @@ void motor_pwm_init()
 }
 
 // Function to set the motor direction
-void motor_set_direction(bool forward)
+void motor_set_direction(const char *direction)
 {
-    if (forward)
+    printf("Setting direction: %s\n", direction);
+    if (strcmp(direction, "forward") == 0)
     {
-        // Forward Direction
         gpio_put(MOTOR_A_IN1, 1);
         gpio_put(MOTOR_A_IN2, 0);
         gpio_put(MOTOR_B_IN1, 1);
         gpio_put(MOTOR_B_IN2, 0);
     }
-    else
+    else if (strcmp(direction, "backward") == 0)
     {
-        // Reverse Direction
         gpio_put(MOTOR_A_IN1, 0);
         gpio_put(MOTOR_A_IN2, 1);
         gpio_put(MOTOR_B_IN1, 0);
         gpio_put(MOTOR_B_IN2, 1);
     }
+    else if (strcmp(direction, "right") == 0)
+    {
+        // Turn left by stopping the right motor and running the left motor forward
+        gpio_put(MOTOR_A_IN1, 1); // Left motor forward
+        gpio_put(MOTOR_A_IN2, 0);
+        gpio_put(MOTOR_B_IN1, 0); // Right motor stop
+        gpio_put(MOTOR_B_IN2, 0);
+    }
+    else if (strcmp(direction, "left") == 0)
+    {
+        // Turn right by stopping the left motor and running the right motor forward
+        gpio_put(MOTOR_A_IN1, 0); // Left motor stop
+        gpio_put(MOTOR_A_IN2, 0);
+        gpio_put(MOTOR_B_IN1, 1); // Right motor forward
+        gpio_put(MOTOR_B_IN2, 0);
+    }
+    else
+    {
+        motor_stop(); // Stop if the direction is invalid
+    }
+    printf("Direction set. Current state:\n");
+    motor_print_state();
 }
 
 bool motor_get_direction()
@@ -69,6 +92,7 @@ void motor_set_speed(uint8_t speed)
 
     pwm_set_chan_level(slice_a, pwm_gpio_to_channel(MOTOR_A_PWM), speed);
     pwm_set_chan_level(slice_b, pwm_gpio_to_channel(MOTOR_B_PWM), speed);
+    printf("Motor speed set to: %d\n", speed);
 }
 
 // Function to stop the motors
@@ -107,4 +131,16 @@ void pwm_stop(uint pin)
 {
     uint slice = pwm_gpio_to_slice_num(pin);
     pwm_set_enabled(slice, false);
+}
+
+void motor_print_state()
+{
+    printf("Motor A: IN1=%d, IN2=%d, PWM=%d\n",
+           gpio_get(MOTOR_A_IN1),
+           gpio_get(MOTOR_A_IN2),
+           pwm_get_counter(pwm_gpio_to_slice_num(MOTOR_A_PWM)));
+    printf("Motor B: IN1=%d, IN2=%d, PWM=%d\n",
+           gpio_get(MOTOR_B_IN1),
+           gpio_get(MOTOR_B_IN2),
+           pwm_get_counter(pwm_gpio_to_slice_num(MOTOR_B_PWM)));
 }
