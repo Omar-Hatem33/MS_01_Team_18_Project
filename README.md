@@ -6,6 +6,14 @@ More details of project implementation are available in the report.
 
 ---
 
+## 🧤 Project Overview – Magneto Glove  
+
+The **Magneto Glove** is a wearable embedded system that allows a user to control a car using **hand tilt gestures**.  
+The glove is equipped with an **IMU sensor (MPU6050)** for tilt detection, and it communicates wirelessly with the car.  
+The car receives tilt commands and translates them into **forward, backward, left, and right movement**, enabling intuitive gesture-based control.  
+
+---
+
 ## 📂 Repository Structure  
 
 - **main branch** → General documentation & consolidated updates.  
@@ -112,6 +120,7 @@ Integrate all project hardware and implement full system software with concurren
 - Build system: **CMake + Pico SDK**.  
 - Microcontrollers used: **Arduino Nano RP2040 Connect / Raspberry Pi Pico W**.  
 - Wi-Fi experiments were implemented with ESP32 modules for communication.  
+
 
 
 
